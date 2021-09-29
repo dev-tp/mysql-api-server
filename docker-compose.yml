@@ -4,12 +4,24 @@ services:
   database:
     build: ./database
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: database
-    ports:
-      - '3306:3306'
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+    # ports:
+    #   - '3306:3306'
     restart: always
     volumes:
       - ./database/backup:/backup/
+  web:
+    build: ./web
+    environment:
+      - MYSQL_HOST
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    links:
+      - database
+    ports:
+      - "${PORT}:8080"
+    restart: always
