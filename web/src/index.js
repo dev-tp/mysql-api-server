@@ -19,7 +19,7 @@ class MySQLServer {
   listen() {
     this.server.on('close', () => this.database.end());
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.HTTP_PORT || 8080;
 
     const server = this.server.listen(port, () =>
       console.log(`Listening on port ${port}`)

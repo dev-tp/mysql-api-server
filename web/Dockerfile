@@ -7,13 +7,13 @@ ENV MYSQL_DATABASE=database
 ENV MYSQL_USER=admin
 ENV MYSQL_PASSWORD=password
 
+ENV HTTP_PORT=8080
 ENV NODE_ENV=production
-ENV PORT=8080
 
 COPY ./src /app
 
 RUN yarn
 
-EXPOSE ${PORT}
+EXPOSE ${HTTP_PORT}
 
 CMD yarn start
