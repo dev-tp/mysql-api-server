@@ -12,10 +12,6 @@ class MySQLServer {
     this.server.use(express.json());
   }
 
-  addRoute(route, callback) {
-    this.server.use(route, callback(express.Router()));
-  }
-
   listen() {
     this.server.on('close', () => this.database.end());
 
@@ -39,6 +35,10 @@ class MySQLServer {
       });
     });
   }
+
+  route(prefix) {
+    return this.server.route(prefix);
+  }
 }
 
 const server = new MySQLServer({
@@ -48,15 +48,11 @@ const server = new MySQLServer({
   password: process.env.MYSQL_PASSWORD,
 });
 
-server.addRoute('/api', (router) => {
-  router.get('/', (_, response) =>
-    server
-      .query('SELECT 1')
-      .then((result) => response.send(result))
-      .catch((error) => response.send(error))
-  );
-
-  return router;
-});
+server.route('/api').get((_, response) =>
+  server
+    .query('SELECT "Hello, World!"')
+    .then((result) => response.send(result))
+    .catch((error) => response.send(error))
+);
 
 server.listen();
