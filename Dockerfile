@@ -12,9 +12,12 @@ RUN apt-get install -y npm nodejs
 
 RUN npm install -g yarn
 
-COPY init.sh /root
+COPY .env /root
+COPY setup.sh /root
 COPY src /root/src
 
-EXPOSE 8080
+RUN bash setup.sh
 
-# CMD /bin/bash init.sh
+EXPOSE 3306 8080
+
+CMD mysqld
