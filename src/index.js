@@ -5,9 +5,7 @@ import helmet from 'helmet';
 import mysql from 'mysql';
 
 export default class MySqlServer {
-  constructor(port = 8080) {
-    this.port = port;
-
+  constructor() {
     dotenv.config({ path: '../.env' });
 
     this.connection = mysql.createPool({
@@ -24,7 +22,7 @@ export default class MySqlServer {
   }
 
   listen(callback) {
-    this.app.listen(this.port, callback);
+    this.app.listen(8080, callback);
   }
 
   query(query) {
