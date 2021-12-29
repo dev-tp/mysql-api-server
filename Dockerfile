@@ -16,6 +16,7 @@ COPY .env /root
 COPY setup.sh /root
 COPY src /root/src
 
+RUN printf "\n[mysqld]\nbind-address = 0.0.0.0\n" >> /etc/mysql/my.cnf
 RUN bash setup.sh
 
 EXPOSE 3306 8080
