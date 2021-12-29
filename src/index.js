@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import mysql from 'mysql';
 
-export default class MySqlServer {
+export default class MySQLServer {
   constructor() {
     dotenv.config({ path: '../.env' });
 
