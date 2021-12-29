@@ -15,6 +15,7 @@ RUN apt-get install -y nodejs
 RUN npm install -g yarn
 
 COPY .env /root
+COPY schema.sql /root
 COPY setup.sh /root
 COPY src /root/src
 

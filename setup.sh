@@ -26,6 +26,10 @@ if [[ -n $MYSQL_USER ]] && [[ -n $MYSQL_PASSWORD ]]; then
 
   if [[ -n $MYSQL_DATABASE ]]; then
     execute_sql "CREATE DATABASE \`$MYSQL_DATABASE\`"
+
+    if [[ -f schema.sql ]]; then
+      mysql -uroot -D $MYSQL_DATABASE < schema.sql
+    fi
   fi
 fi
 
