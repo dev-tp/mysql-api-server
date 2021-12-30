@@ -24,4 +24,4 @@ RUN bash setup.sh
 
 EXPOSE 3306 8080
 
-CMD mysqld
+CMD node src/index.js & mysqld
