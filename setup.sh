@@ -1,14 +1,12 @@
 #!/bin/bash
 
+set -o allexport
+source .env
+set +o allexport
+
 execute_sql() {
   mysql -uroot -e "$@"
 }
-
-if [[ -f .env ]]; then
-  set -o allexport
-  source .env
-  set +o allexport
-fi
 
 if [[ -z $MYSQL_USER ]] || [[ -z $MYSQL_PASSWORD ]] && [[ -z $MYSQL_ROOT_PASSWORD ]]; then
   echo "Please declare MYSQL_ROOT_PASSWORD or setup a MYSQL_USER and MYSQL_PASSWORD."

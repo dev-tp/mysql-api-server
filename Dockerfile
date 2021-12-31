@@ -15,6 +15,7 @@ RUN apt-get install -y nodejs
 RUN npm install -g yarn
 
 COPY .env /root
+COPY run.sh /root
 COPY schema.sql /root
 COPY setup.sh /root
 COPY src /root/src
@@ -25,4 +26,4 @@ RUN yarn --cwd src
 
 EXPOSE 3306 8080
 
-CMD node src/index.js & mysqld
+ENTRYPOINT bash run.sh
