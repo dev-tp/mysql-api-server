@@ -17,9 +17,9 @@ export default class MySQLServer {
     this.app.listen(8080, callback);
   }
 
-  query(query) {
+  query(query, values) {
     return new Promise((resolve, reject) => {
-      this.connection.query(query, (error, results) => {
+      this.connection.query(query, values, (error, results) => {
         if (error) {
           reject(error);
         }
